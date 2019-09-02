@@ -46,7 +46,7 @@ table {
 </head>
 <body>
 	<div id="title">
-		<h2>공지사항 게시판</h2>
+		<h2>Q&A 게시판</h2>
 	</div>
 
 	<div class="container-fluid">
@@ -91,7 +91,7 @@ table {
 		</select> <input type="text" name="search" class="form-control col-sm-3"
 			id="searchbar"> <input type="submit" value="검색"
 			class="btn btn-default">
-		<c:if test="${loginuser.state=='hadmin' }">
+		<c:if test="${loginuser.state=='user' }">
 			<input type="button" value="글쓰기" class="btn btn-default" id="write"
 				onclick='location.href="/finddoc/board/noticeBoard_writeView.do"'>
 		</c:if>

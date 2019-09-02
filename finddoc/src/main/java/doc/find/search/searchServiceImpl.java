@@ -19,7 +19,8 @@ public class searchServiceImpl implements searchService {
 		 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B551182/hospInfoService/getHospBasisList"); /*URL*/
 	        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=EcZBFp8riC1kWptGZdp7ZikCotqiO6vy18vQdIuWjG%2FeOrxS4y6VR6i0dUv0vFBCLaFg6eOE4exgXOOBIC8Dmw%3D%3D"); /*Service Key*/
 	        urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("EcZBFp8riC1kWptGZdp7ZikCotqiO6vy18vQdIuWjG%2FeOrxS4y6VR6i0dUv0vFBCLaFg6eOE4exgXOOBIC8Dmw%3D%3D", "UTF-8")); /*서비스키*/
-	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8"));
+	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("2", "UTF-8"));
+	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8"));
 	        urlBuilder.append("&" + URLEncoder.encode("emdongNm","UTF-8") + "=" + URLEncoder.encode(loctxt, "UTF-8")); /*읍면동명*/
 	        urlBuilder.append("&" + URLEncoder.encode("yadmNm","UTF-8") + "=" + URLEncoder.encode(hospname, "UTF-8")); /*병원명 (UTF-8 인코딩 필요)*/
 	        urlBuilder.append("&" + URLEncoder.encode("zipCd","UTF-8") + "=" + URLEncoder.encode(zipCd, "UTF-8"));

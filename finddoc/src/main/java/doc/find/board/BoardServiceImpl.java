@@ -17,16 +17,16 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<Notice_BoardDTO> noticelist(String id, String state) {
-		List<Notice_BoardDTO> noticedto = null;
+		List<Notice_BoardDTO> noticelist = null;
 		String tag;
 		if (state.equals("hadmin")) {
 			tag = "finddoc.board.noticeall";
-			noticedto = dao.noticelist(id, tag);
+			noticelist = dao.noticelist(id, tag);
 		} else {
 			tag = "finddoc.board.noticeuserall";
-			noticedto = dao.noticelist(id, tag);
+			noticelist = dao.noticelist(id, tag);
 		}
-		return noticedto;
+		return noticelist;
 	}
 
 	@Override
@@ -49,5 +49,34 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<Notice_BoardDTO> noticesearch(String category, String search) {
 		return dao.noticesearch(category, search);
+	}
+
+	@Override
+	public int reviewinsert(Review_BoardDTO reviewdto) {
+		return dao.reviewinsert(reviewdto);
+	}
+
+	@Override
+	public List<Review_BoardDTO> reviewlist(String id, String state) {
+		List<Review_BoardDTO> reviewlist = null;
+		String tag;
+		if (state.equals("user")) {
+			tag = "finddoc.board.reviewuserall";
+			reviewlist = dao.reviewlist(id, tag);
+		} else {
+			tag = "finddoc.board.reviewall";
+			reviewlist = dao.reviewlist(id, tag);
+		}
+		return reviewlist;
+	}
+
+	@Override
+	public List<Review_BoardDTO> reviewsearch(String category, String search) {
+		return dao.reviewsearch(category, search);
+	}
+
+	@Override
+	public List<Review_BoardDTO> reviewsearchhname(String category, String id) {
+		return dao.reviewsearchhname(category, id);
 	}
 }

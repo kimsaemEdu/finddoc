@@ -55,5 +55,37 @@
 			</if>
 		</where>
 	</select>
-
+	<insert id="insertreview" parameterType="reviewboard">
+		insert into review_board
+		values(reviewboardnum_seq.nextval,'0',#{id},#{title},#{text},'o',sysdate,sysdate,'0',#{reco},#{hname},#{name})
+	</insert>
+	<select id="reviewuserall" parameterType="String"
+		resultType="reviewboard">
+		select * from review_board where id=#{id} and del='o'
+	</select>
+	<select id="reviewall" parameterType="String"
+		resultType="reviewboard">
+		select * from review_board where
+		hname=#{hname} and del='o'
+	</select>
+	<select id="reviewsearch" parameterType="Map"
+		resultType="reviewboard">
+		select * from review_board
+		<where>
+			<if test="category=='title' and search!=''">
+				title like '%'||#{search}||'%'
+			</if>
+			<if test="category=='text' and search!=''">
+				text like '%'||#{search}||'%'
+			</if>
+			<if test="category=='txupdate' and search!=''">
+			<![CDATA[to_date(txupdate) <= #{search}]]>
+			</if>
+		</where>
+	</select>
+	<select id="reviewsearchhname" parameterType="Map"
+		resultType="reviewboard">
+		select * from review_board where hname=#{category} and
+		id=#{id} and del='o'
+	</select>
 </mapper>

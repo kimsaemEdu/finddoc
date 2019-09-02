@@ -23,4 +23,16 @@ public interface BoardDAO {
 
 	// 공지사항 게시판 검색
 	List<Notice_BoardDTO> noticesearch(String category, String search);
+
+	// 후기 게시판 글쓰기
+	int reviewinsert(Review_BoardDTO reviewdto);
+
+	// 후기 게시판 들어오면 보여지는 공지사항리스트
+	List<Review_BoardDTO> reviewlist(String id, String tag);
+
+	// 후기 게시판 검색
+	List<Review_BoardDTO> reviewsearch(String category, String search);
+
+	// 후기게시판에서 병원명으로 검색
+	List<Review_BoardDTO> reviewsearchhname(String category, String id);
 }

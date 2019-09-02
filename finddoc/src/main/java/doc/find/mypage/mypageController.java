@@ -37,7 +37,7 @@ public class mypageController {
 		mypage.setUserid(getid(req));
 		mypage.setYkiho(ykiho);
 		String message = "";
-		int result=service.insertbookmark(mypage);
+		int result=service.insertbookmark(mypage); //병원이 등록되었을 때 실행 하도록 변경
 		if(result==0) {
 			message="이미 등록된 병원입니다.";
 		}

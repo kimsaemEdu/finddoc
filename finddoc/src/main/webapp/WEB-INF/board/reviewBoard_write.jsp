@@ -36,18 +36,19 @@
 
 				<form class="form-horizontal style-form"
 					action="/finddoc/board/reviewBoard_insert.do" method="post">
+					<input type="hidden" name="name" value="${loginuser.name}">
+					<input type="hidden" name="id" value="${loginuser.userid }">
 					<div class="form-group" style="border: 1px solid #eff2f7;">
 
 						<label class="col-sm-2 col-sm-2 control-label">작성자</label>
 						<div class="col-sm-10">
-							<input type="hidden" name="id" value="lee">
-							<p class="form-control-static">등록자</p>
+							<p class="form-control-static">${loginuser.name }</p>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">병원 이름</label>
 
 							<div class="col-sm-5">
-								<select name="category" class="form-control">
+								<select name="hname" class="form-control">
 									<option value="굿닥">굿닥</option>
 									<option value="똑닥">똑닥</option>
 									<option value="뚝닥">뚝닥</option>
@@ -70,9 +71,9 @@
 						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">내용</label>
 							<div class="col-sm-8">
-								<textarea id="content"
+								<textarea id="text"
 									style="width: 100%; border: 1; overflow: visible; text-overflow: ellipsis;"
-									rows=15 name="content">글내용</textarea>
+									rows=15 name="text"></textarea>
 
 							</div>
 						</div>
@@ -80,7 +81,7 @@
 							<div class="col-sm-6 col-sm-offset-2">
 								<input type="submit" value="글등록" class="btn btn-success" id=find />
 								<input type="button" value="취소" class="btn btn-success"
-									onclick="location.href='/finddoc/board/reviewBoardList.do?category=all'" />
+									onclick="location.href='/finddoc/board/reviewBoardList.do'" />
 							</div>
 						</div>
 					</div>

@@ -50,4 +50,30 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectList("finddoc.board.noticesearch", map);
 	}
 
+	@Override
+	public int reviewinsert(Review_BoardDTO reviewdto) {
+		return sqlSession.insert("finddoc.board.insertreview", reviewdto);
+	}
+
+	@Override
+	public List<Review_BoardDTO> reviewlist(String id, String tag) {
+		return sqlSession.selectList(tag, id);
+	}
+
+	@Override
+	public List<Review_BoardDTO> reviewsearch(String category, String search) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("category", category);
+		map.put("search", search);
+		return sqlSession.selectList("finddoc.board.reviewsearch", map);
+	}
+
+	@Override
+	public List<Review_BoardDTO> reviewsearchhname(String category, String id) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("category", category);
+		map.put("id", id);
+		return sqlSession.selectList("finddoc.board.reviewsearchhname", map);
+	}
+
 }

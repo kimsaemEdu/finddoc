@@ -151,6 +151,10 @@ update myhospital set ox='o'
 where ykiho='JDQ4MTAxMiM1MSMkMSMkMCMkODkkMzgxMzUxIzExIyQxIyQzIyQ3OSQzNjEyMjIjNTEjJDEjJDYjJDgz' 
 and userid='java';
 
+create table test(
+	test varchar2(10)
+	)
+
 select * from myhospital where userid='java' and ox='x';
 select * from myhospital where userid='java';
 delete myhospital where userid='java';

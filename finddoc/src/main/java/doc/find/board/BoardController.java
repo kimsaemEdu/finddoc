@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tiles.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,18 +23,77 @@ public class BoardController {
 
 	// 후기 게시판
 	@RequestMapping("/board/reviewBoardList.do")
-	public ModelAndView review(String category) {
+	public ModelAndView review(String category, HttpServletRequest req) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		if (category.equals("all")) {
-			mav.setViewName("board/reviewBoardList");
+		HttpSession ses = req.getSession(false);
+		MemberDTO memberdto = null;
+		if (ses != null) {
+			memberdto = (MemberDTO) ses.getAttribute("loginuser");
 		}
+		if (memberdto instanceof UserDTO) {
+			UserDTO userdto = (UserDTO) memberdto;
+			List<Review_BoardDTO> reviewlist = boardService.reviewlist(userdto.getUserid(), "user");
+			mav.addObject("reviewlist", reviewlist);
+		} else {
+			HadminDTO hadmindto = (HadminDTO) memberdto;
+			List<Review_BoardDTO> reviewlist = boardService.reviewlist(hadmindto.getHadminid(), "hadmin");
+			mav.addObject("reviewlist", reviewlist);
+		}
+		mav.setViewName("board/reviewBoardList");
 		return mav;
 	}
 
 	// 후기 게시판 글등록버튼 눌렀을때
 	@RequestMapping("/board/reviewBoard_insert.do")
-	public ModelAndView reviewInsert() {
+	public ModelAndView reviewInsert(Review_BoardDTO reviewdto) {
 		ModelAndView mav = new ModelAndView();
+		boardService.reviewinsert(reviewdto);
+		mav.setViewName("redirect:/board/reviewBoardList.do");
+		return mav;
+	}
+
+	// 후기 게시판 카테고리별로 검색
+	@RequestMapping("/board/reviewBoard_search.do")
+	public ModelAndView reviewSearch(String category, String search, HttpServletRequest req) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession ses = req.getSession(false);
+		MemberDTO memberdto = null;
+		HadminDTO hadmindto = null;
+		UserDTO userdto = null;
+		List<Review_BoardDTO> reviewlist = null;
+
+		if (ses != null) {
+			memberdto = (MemberDTO) ses.getAttribute("loginuser");
+		}
+
+		if (memberdto.getState().equals("hadmin")) {
+			hadmindto = (HadminDTO) memberdto;
+		} else {
+			userdto = (UserDTO) memberdto;
+		}
+
+		if (search != "") {
+			reviewlist = boardService.reviewsearch(category, search);
+		} else {
+			reviewlist = boardService.reviewsearch(hadmindto.getHadminid(), "hadmin");
+		}
+		mav.addObject("reviewlist", reviewlist);
+		mav.setViewName("board/reviewBoardList");
+		return mav;
+	}
+
+	// 후기 게시판 병원별 검색
+	@RequestMapping("/board/reviewBoard_searchhname.do")
+	public ModelAndView reviewsearchhname(String category, HttpServletRequest req) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession ses = req.getSession(false);
+		UserDTO userdto = null;
+		if (ses != null) {
+			userdto = (UserDTO) ses.getAttribute("loginuser");
+		}
+		List<Review_BoardDTO> reviewlist = boardService.reviewsearchhname(category, userdto.getUserid());
+		mav.addObject("reviewlist", reviewlist);
+		mav.addObject("category", category);
 		mav.setViewName("board/reviewBoardList");
 		return mav;
 	}
@@ -58,34 +118,37 @@ public class BoardController {
 
 	// 공지사항 게시판
 	@RequestMapping("/board/noticeBoardList.do")
-	public ModelAndView notice(HttpServletRequest req, String category) {
+	public ModelAndView notice(String category, HttpServletRequest req) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		HttpSession ses = req.getSession(false);
 		MemberDTO memberdto = null;
+		List<Notice_BoardDTO> noticelist = null;
+
 		if (ses != null) {
 			memberdto = (MemberDTO) ses.getAttribute("loginuser");
 		}
 		if (memberdto instanceof UserDTO) {
 			UserDTO userdto = (UserDTO) memberdto;
-			if (category.equals("all")) {
-				List<Notice_BoardDTO> noticelist = boardService.noticelist(userdto.getUserid(), "user");
-				mav.addObject("noticelist", noticelist);
-				mav.setViewName("board/noticeBoardList");
-			}
+			noticelist = boardService.noticelist(userdto.getUserid(), "user");
+			mav.addObject("noticelist", noticelist);
+			noticelist = boardService.noticelist(userdto.getUserid(), "user");
 
 		} else {
 			HadminDTO hadmindto = (HadminDTO) memberdto;
-			List<Notice_BoardDTO> noticelist = boardService.noticelist(hadmindto.getHadminid(), "hadmin");
+			noticelist = boardService.noticelist(hadmindto.getHadminid(), "hadmin");
 			mav.addObject("noticelist", noticelist);
-			mav.setViewName("board/noticeBoardList");
+			noticelist = boardService.noticelist(hadmindto.getHadminid(), "hadmin");
 		}
+		mav.setViewName("board/noticeBoardList");
 
+		mav.addObject("noticelist", noticelist);
+		mav.setViewName("board/noticeBoardList");
 		return mav;
 	}
 
 	// 공지사항 글눌러서 read화면으로 이동
 	@RequestMapping("/board/noticeBoard_read.do")
-	public ModelAndView noticeRead(String noticeboardnum, String hname, HttpServletRequest req) {
+	public ModelAndView noticeRead(String noticeboardnum, String hname, HttpServletRequest req) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		Notice_BoardDTO noticeread = boardService.noticeread(noticeboardnum);
 		mav.addObject("noticeread", noticeread);
@@ -102,7 +165,7 @@ public class BoardController {
 
 	// 공지사항 게시판 카테고리별로 검색
 	@RequestMapping("/board/noticeBoard_search.do")
-	public ModelAndView noticeSearch(String category, String search, HttpServletRequest req) {
+	public ModelAndView noticeSearch(String category, String search, HttpServletRequest req) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		HttpSession ses = req.getSession(false);
 		MemberDTO memberdto = null;
@@ -122,7 +185,6 @@ public class BoardController {
 
 		if (search != "") {
 			noticelist = boardService.noticesearch(category, search);
-			System.out.println(noticelist);
 		} else {
 			noticelist = boardService.noticelist(hadmindto.getHadminid(), "hadmin");
 		}
@@ -153,8 +215,8 @@ public class BoardController {
 	public ModelAndView noticeInsert(Notice_BoardDTO noticedto) {
 		ModelAndView mav = new ModelAndView();
 		boardService.noticeinsert(noticedto);
-
 		mav.setViewName("redirect:/board/noticeBoardList.do");
 		return mav;
 	}
+
 }

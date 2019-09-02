@@ -60,7 +60,7 @@
 							<div class="col-sm-6 col-sm-offset-2">
 								<input type="submit" value="글등록" class="btn btn-success" id=find />
 								<input type="button" value="취소" class="btn btn-success"
-									onclick="location.href='/finddoc/board/qaBoardList.do?category=all'" />
+									onclick="location.href='/finddoc/board/qaBoardList.do'" />
 							</div>
 						</div>
 					</div>

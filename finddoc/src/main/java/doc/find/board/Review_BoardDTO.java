@@ -11,9 +11,11 @@ public class Review_BoardDTO {
 	private String moddate;
 	private String APPROVALNUM;
 	private int reco;
+	private String hname;
+	private String name;
 
 	public Review_BoardDTO(int reviewboardnum, int reviewcount, String id, String title, String text, String del,
-			String txupdate, String moddate, String aPPROVALNUM, int reco) {
+			String txupdate, String moddate, String aPPROVALNUM, int reco, String hname, String name) {
 		super();
 		this.reviewboardnum = reviewboardnum;
 		this.reviewcount = reviewcount;
@@ -25,25 +27,27 @@ public class Review_BoardDTO {
 		this.moddate = moddate;
 		APPROVALNUM = aPPROVALNUM;
 		this.reco = reco;
+		this.hname = hname;
+		this.name = name;
 	}
 
 	public Review_BoardDTO() {
 		super();
 	}
 
-	public int getreviewboardnum() {
+	public int getReviewboardnum() {
 		return reviewboardnum;
 	}
 
-	public void setreviewboardnum(int reviewboardnum) {
+	public void setReviewboardnum(int reviewboardnum) {
 		this.reviewboardnum = reviewboardnum;
 	}
 
-	public int getreviewcount() {
+	public int getReviewcount() {
 		return reviewcount;
 	}
 
-	public void setreviewcount(int reviewcount) {
+	public void setReviewcount(int reviewcount) {
 		this.reviewcount = reviewcount;
 	}
 
@@ -111,11 +115,29 @@ public class Review_BoardDTO {
 		this.reco = reco;
 	}
 
+	public String getHname() {
+		return hname;
+	}
+
+	public void setHname(String hname) {
+		this.hname = hname;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
 		return "Review_BoardDTO [reviewboardnum=" + reviewboardnum + ", reviewcount=" + reviewcount + ", id=" + id
 				+ ", title=" + title + ", text=" + text + ", del=" + del + ", txupdate=" + txupdate + ", moddate="
-				+ moddate + ", APPROVALNUM=" + APPROVALNUM + ", reco=" + reco + "]";
+				+ moddate + ", APPROVALNUM=" + APPROVALNUM + ", reco=" + reco + ", hname=" + hname + ", name=" + name
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 
 }

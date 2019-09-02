@@ -10,12 +10,11 @@
 <body>
 	<c:if test="${loginuser.state=='user'}">
 		<div class="list-group">
-			<a href="/finddoc/board/noticeBoardList.do?category=all"
-				class="list-group-item">자주가는 병원 공지사항</a> <a
-				href="/finddoc/board/reviewBoardList.do?category=all"
+			<a href="/finddoc/board/noticeBoardList.do" class="list-group-item">자주가는
+				병원 공지사항</a> <a href="/finddoc/board/reviewBoardList.do"
 				class="list-group-item">내가 쓴 후기보기</a> <a
-				href="/finddoc/board/qaBoardList.do?category=all"
-				class="list-group-item">나의 Q&A</a>
+				href="/finddoc/board/qaBoardList.do" class="list-group-item">나의
+				Q&A</a>
 		</div>
 	</c:if>
 	<c:if test="${loginuser.state=='hadmin'}">
