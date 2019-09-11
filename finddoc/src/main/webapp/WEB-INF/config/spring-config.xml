@@ -18,7 +18,7 @@
 	<!-- db연동을 위한 설정(spring jdbc) : Connection Pool로 수정 -->
 	<beans:bean id="ds"
 		class="org.springframework.jndi.JndiObjectFactoryBean">
-		<beans:property name="jndiName" value="jdbc/myspring" />
+		<beans:property name="jndiName" value="jdbc/myspring1" />
 		<beans:property name="resourceRef" value="true" />
 	</beans:bean>
 

@@ -31,7 +31,7 @@
     <!-- name 커넥션풀을 찾아갈 이름 -->
     <!-- type 커넥션풀을 접근할 수 있게 도와주는 표준API -->
      <!-- maxTotal 동시간에 가장 많이 접속가능한 접속자 수 -->
-    <Resource name="jdbc/myspring" 
+    <Resource name="jdbc/myspring1" 
             auth="Container"
             type="javax.sql.DataSource"
             username="find" 
