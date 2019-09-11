@@ -22,7 +22,13 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int insertHadmin(HadminDTO hadmindto) {
-		return dao.insertHadmin(hadmindto);
+		int result=0;
+		int resulth=dao.insertHadmin(hadmindto);
+		int resulta=dao.insertAdmin_app(hadmindto.getHadminid());
+		if(resulth>0) {
+			result=1;
+		}
+		return result;
 	}
 
 	@Override

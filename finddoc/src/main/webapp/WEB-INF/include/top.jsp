@@ -73,8 +73,7 @@ div a:hover {
 								<li id="book"><a href="/finddoc/user/book.do?action=view">병원예약</a></li>
 								<li id="receipt"><a
 									href="/finddoc/receipt/book.do?action=view">병원접수</a></li>
-								<li id="board"><a
-									href="/finddoc/board/noticeBoardList.do?category=all">게시판</a></li>
+								<li id="board"><a href="/finddoc/board/noticeBoardList.do">게시판</a></li>
 							</c:otherwise>
 						</c:choose>
 					</ul>

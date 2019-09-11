@@ -9,13 +9,14 @@ public class Review_BoardDTO {
 	private String del;
 	private String txupdate;
 	private String moddate;
-	private String APPROVALNUM;
+	private String ykiho;
 	private int reco;
 	private String hname;
 	private String name;
+	private int rn;
 
 	public Review_BoardDTO(int reviewboardnum, int reviewcount, String id, String title, String text, String del,
-			String txupdate, String moddate, String aPPROVALNUM, int reco, String hname, String name) {
+			String txupdate, String moddate, String ykiho, int reco, String hname, String name, int rn) {
 		super();
 		this.reviewboardnum = reviewboardnum;
 		this.reviewcount = reviewcount;
@@ -25,10 +26,11 @@ public class Review_BoardDTO {
 		this.del = del;
 		this.txupdate = txupdate;
 		this.moddate = moddate;
-		APPROVALNUM = aPPROVALNUM;
+		this.ykiho = ykiho;
 		this.reco = reco;
 		this.hname = hname;
 		this.name = name;
+		this.rn = rn;
 	}
 
 	public Review_BoardDTO() {
@@ -99,12 +101,12 @@ public class Review_BoardDTO {
 		this.moddate = moddate;
 	}
 
-	public String getAPPROVALNUM() {
-		return APPROVALNUM;
+	public String getykiho() {
+		return ykiho;
 	}
 
-	public void setAPPROVALNUM(String aPPROVALNUM) {
-		APPROVALNUM = aPPROVALNUM;
+	public void setykiho(String ykiho) {
+		ykiho = ykiho;
 	}
 
 	public int getReco() {
@@ -131,12 +133,19 @@ public class Review_BoardDTO {
 		this.name = name;
 	}
 
+	public int getRn() {
+		return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
+
 	@Override
 	public String toString() {
 		return "Review_BoardDTO [reviewboardnum=" + reviewboardnum + ", reviewcount=" + reviewcount + ", id=" + id
 				+ ", title=" + title + ", text=" + text + ", del=" + del + ", txupdate=" + txupdate + ", moddate="
-				+ moddate + ", APPROVALNUM=" + APPROVALNUM + ", reco=" + reco + ", hname=" + hname + ", name=" + name
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ moddate + ", ykiho=" + ykiho + ", reco=" + reco + ", hname=" + hname + ", name=" + name + ", rn=" + rn
 				+ "]";
 	}
 

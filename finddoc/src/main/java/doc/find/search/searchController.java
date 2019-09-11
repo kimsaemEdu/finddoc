@@ -26,14 +26,28 @@ public class searchController {
 
 	@RequestMapping(value = "/search/search_ajax.do", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public @ResponseBody String search_ajax(String loctxt, String hospname, String zipCd, String dgsbjtCd) throws IOException {
-		String result = service.search(loctxt, hospname, zipCd, dgsbjtCd);
+		String result = service.searchAll(loctxt, hospname, zipCd, dgsbjtCd);
+		System.out.println("result:"+result);
+		return result;
+	}
+	
+	@RequestMapping(value = "/search/search_pasing.do", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	public @ResponseBody String search_pasing(String pageno, String loctxt, String hospname, String zipCd, String dgsbjtCd) throws IOException {
+		String result = service.search(pageno, loctxt, hospname, zipCd, dgsbjtCd);
 		System.out.println("result:"+result);
 		return result;
 	}
 	
 	@RequestMapping(value = "/search/drag_map.do", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public @ResponseBody String dragmap_ajax(String xPos, String yPos, String radius) throws IOException {
-		String result = service.dragmap(xPos, yPos, radius);
+		String result = service.dragmapAll(xPos, yPos, radius);
+		System.out.println("좌표로 검색:"+result);
+		return result;
+	}
+	
+	@RequestMapping(value = "/search/drag_pasing.do", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	public @ResponseBody String dragmap_pasing(String pageno, String xPos, String yPos, String radius) throws IOException {
+		String result = service.dragmap(pageno, xPos, yPos, radius);
 		System.out.println("좌표로 검색:"+result);
 		return result;
 	}

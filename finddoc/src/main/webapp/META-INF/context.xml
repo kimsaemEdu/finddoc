@@ -37,7 +37,7 @@
             username="find" 
             password="doc"
             driverClassName="oracle.jdbc.driver.OracleDriver"
-            url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
+            url="jdbc:oracle:thin:@192.168.201.29:1521:xe"
             maxTotal="20"
             maxIdle="10"/>
     

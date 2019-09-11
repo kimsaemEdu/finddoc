@@ -16,33 +16,48 @@
 </head>
 <body>
 
-	<form class="form-horizontal" action="/erp/board/read.do" method="post">
-		<input type="hidden" name="action" value="update"> <input
-			type="hidden" name="board_no" value="${board.board_no}">
+	<form class="form-horizontal"
+		action="/finddoc/board/reviewBoard_update.do" method="post">
+		<input type="hidden" name="action" value="read"> <input
+			type="hidden" name="reviewboardnum"
+			value="${reviewread.reviewboardnum}"> <input type="hidden"
+			name="hname" value="${reviewread.hname}">
 		<div class="form-group">
 			<div class="col-md-2 text-right">
 				<label for="id" class="control-label">번호</label>
 			</div>
-			<div class="col-md-8">${board.board_no}</div>
+			<div class="col-md-8">${reviewread.reviewboardnum}</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-2 text-right">
+				<label for="id" class="control-label">조회수</label>
+			</div>
+			<div class="col-md-8">${reviewread.reviewcount}</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-2 text-right">
+				<label for="id" class="control-label">병원명</label>
+			</div>
+			<div class="col-md-8">${reviewread.hname}</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-2 text-right">
 				<label for="id" class="control-label">작성자</label>
 			</div>
-			<div class="col-md-8">${board.id }</div>
+			<div class="col-md-8">${reviewread.name}</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-2 text-right">
 				<label for="title" class="control-label">제목</label>
 			</div>
-			<div class="col-md-8">${board.title}</div>
+			<div class="col-md-8">${reviewread.title}</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-2 text-right">
 				<label for="title" class="control-label">작성날짜</label>
 
 			</div>
-			<div class="col-md-8">${board.write_date }</div>
+			<div class="col-md-8">${reviewread.txupdate }</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-2 text-right">
@@ -50,7 +65,7 @@
 			</div>
 			<div class="col-md-8"
 				style="width: 500px; height: 400px; border: solid 1px;">
-				${board.content }</div>
+				${reviewread.text }</div>
 		</div>
 
 		<div class="form-group">
@@ -65,6 +80,20 @@
 					onclick="location.href='/erp/board/delete.do?board_no=${board.board_no}'">
 					<i class="fa fa-fw fa-close"></i> 삭제
 				</button>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-3 col-sm-offset-2">
+				<c:if test="${reviewread.id==loginuser.userid }">
+					<input type="submit" value="수정" class="btn btn-success" id="update" />
+				</c:if>
+				<input type="button" value="취소" class="btn btn-success"
+					onclick="location.href='/finddoc/board/noticeBoardList.do'" />
+				<c:if test="${reviewread.id==loginuser.userid }">
+					<input type="button" value="삭제" class="btn btn-success"
+						onclick="location.href='/finddoc/board/noticeBoard_delete.do?noticeboardnum=${noticeread.noticeboardnum}'" />
+				</c:if>
 			</div>
 		</div>
 	</form>

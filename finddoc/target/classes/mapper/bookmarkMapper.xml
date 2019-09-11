@@ -31,4 +31,8 @@
   			</if>
   		</where>
   	</select>
+  	<!-- 병원이 이 프로그램에 가입되어있나 확인 -->
+	<select id="hospcheck" parameterType="String" resultType="String">
+		select count(a.hadminid) from admin_app a, hadmin h where h.ykiho=#{ykiho} and h.hadminid=a.hadminid and a.approval='o'
+	</select>
 </mapper>

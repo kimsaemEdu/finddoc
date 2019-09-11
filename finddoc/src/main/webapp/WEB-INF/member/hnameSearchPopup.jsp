@@ -99,15 +99,17 @@ a:hover {
 	}
 	pagelist="";
 	hspname=opener.document.getElementById("hname").value;
+	haddr="${haddr}";
+	
 	if(nowPage==1){
-		prelink="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+1+"&rows="+10+"&haddr="+"${haddr}";
+		prelink="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+1+"&rows="+10+"&haddr="+encodeURI(haddr);
 	}else{
-		prelink="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+(nowPage-1)+"&rows="+10+"&haddr="+"${haddr}";
+		prelink="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+(nowPage-1)+"&rows="+10+"&haddr="+encodeURI(haddr);
 	}
 	if(nowPage==totPage){
-		postlink="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+nowPage+"&rows="+10+"&haddr="+"${haddr}";	
+		postlink="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+nowPage+"&rows="+10+"&haddr="+encodeURI(haddr);	
 	}else{
-		postlink="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+(nowPage+1)+"&rows="+10+"&haddr="+"${haddr}";
+		postlink="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+(nowPage+1)+"&rows="+10+"&haddr="+encodeURI(haddr);
 	}
 	
 	pre="<a href='"+prelink+"'>[이전]</a>";
@@ -115,7 +117,7 @@ a:hover {
 	if(totPage<=10){
 		link=new Array(totPage);
 		for (var i = 0; i < totPage; i++) {
-			link[i]="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+(i+1)+"&rows="+10+"&haddr="+"${haddr}";
+			link[i]="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+(i+1)+"&rows="+10+"&haddr="+encodeURI(haddr);
 			pagelist=pagelist+"<span><a href='"+link[i]+"' id='"+(i+1)+"'>"+" [ "+(i+1)+ " ] "+"</a></span>"
 		}
 		$("#paging").append(pre+pagelist+post);
@@ -135,12 +137,12 @@ a:hover {
 		
 		if(interpage==totinter){
 			for (var i = (interpage-1)*10; i <totPage; i++) {
-				link[i]="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+(i+1)+"&rows="+10+"&haddr="+"${haddr}";
+				link[i]="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+(i+1)+"&rows="+10+"&haddr="+encodeURI(haddr);
 				pagelist=pagelist+"<span><a href='"+link[i]+"' id='"+(i+1)+"'>"+" [ "+(i+1)+ " ] "+"</a></span>"
 			}
 		}else{
 			for (var i = (interpage-1)*10; i <(interpage-1)*10+10; i++) {
-				link[i]="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+(i+1)+"&rows="+10+"&haddr="+"${haddr}";
+				link[i]="/finddoc/member/hnameSearchPopup.do?hospname="+encodeURI(hspname)+"&pageno="+(i+1)+"&rows="+10+"&haddr="+encodeURI(haddr);
 				pagelist=pagelist+"<span><a href='"+link[i]+"' id='"+(i+1)+"'>"+" [ "+(i+1)+ " ] "+"</a></span>"
 			}
 		}

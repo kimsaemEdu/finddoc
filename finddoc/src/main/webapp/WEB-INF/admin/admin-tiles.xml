@@ -6,14 +6,14 @@
 	<!-- 관리자 페이지 -->
 	<definition name="admin" extends="mainTemplate">
 		<put-attribute name="top"
-			value="/WEB-INF/include/top.jsp" />
+			value="/WEB-INF/include/top.jsp"/>
 		<put-attribute name="menu"
 			value="/WEB-INF/menu/admin_page_menu.jsp" />
 	</definition>
 	<!-- 관리자 병원 승인 대기 목록 화면 -->
 	<definition name="admin/accept_list" extends="mainTemplate">
 		<put-attribute name="top"
-			value="/WEB-INF/include/index_top.jsp" />
+			value="/WEB-INF/include/top.jsp"/>
 		<put-attribute name="menu"
 			value="/WEB-INF/menu/admin_page_menu.jsp" />
 		<put-attribute name="content"
@@ -21,9 +21,9 @@
 	</definition>
 
 	<!-- 관리자 병원 승인한 목록 화면 -->
-	<definition name="admin/doc_list" extends="mainTemplate">
+	<definition name="admin/hos_list" extends="mainTemplate">
 		<put-attribute name="top"
-			value="/WEB-INF/include/index_top.jsp" />
+			value="/WEB-INF/include/top.jsp"/>
 		<put-attribute name="menu"
 			value="/WEB-INF/menu/admin_page_menu.jsp" />
 		<put-attribute name="content"
@@ -33,7 +33,7 @@
 	<!-- 관리자 1:1문의 게시판 목록 화면 -->
 	<definition name="admin/oneboardlist" extends="mainTemplate">
 		<put-attribute name="top"
-			value="/WEB-INF/include/index_top.jsp" />
+			value="/WEB-INF/include/top.jsp" />
 		<put-attribute name="content"
 			value="/WEB-INF/admin/oneBoardList.jsp" />
 	</definition>

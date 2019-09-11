@@ -46,6 +46,7 @@
 		select * from hadmin where email=#{email} and
 		hadminidox='o'
 	</select>
-
-
+	<insert id="insertAdmin_app" parameterType="String">
+		insert into admin_app values(#{id},'x')
+	</insert>
 </mapper>

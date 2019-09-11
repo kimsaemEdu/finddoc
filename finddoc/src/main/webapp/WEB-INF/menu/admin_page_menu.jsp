@@ -8,11 +8,9 @@
 </head>
 <body>
 	<div class="list-group">
-		<a href="/finddoc/admin/accept_list.do" class="list-group-item">
-			승인 대기 병원목록</a> <a href="/finddoc/admin/doc_list.do"
-			class="list-group-item"> 승인한 병원목록</a> <a
-			href="/finddoc/admin/oneboardlist.do" class="list-group-item">사이트
-			이용 문의</a>
+		<a href="/finddoc/admin/accept_list.do" class="list-group-item">승인 대기 병원목록</a> 
+		<a href="/finddoc/admin/hos_list.do" class="list-group-item"> 승인한 병원목록</a> 
+		<a href="/finddoc/admin/oneboardlist.do" class="list-group-item">사이트 이용 문의</a>
 	</div>
 </body>
 </html>

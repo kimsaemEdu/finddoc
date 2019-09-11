@@ -39,4 +39,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(tag, email);
 	}
 
+	@Override
+	public int insertAdmin_app(String id) {
+		System.out.println("========================="+id);
+		return sqlSession.insert("finddoc.member.insertAdmin_app", id);
+	}
+
 }

@@ -12,9 +12,26 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<style type="text/css">
+<style>
+body {
+	color: black;
+}
+
 #title {
 	text-align: center;
+	padding: 40px;
+}
+
+table {
+	width: 600px;
+}
+
+.input-group {
+	width: 300px;
+}
+
+.form-control {
+	width: 100px;
 }
 </style>
 </head>
@@ -23,16 +40,6 @@
 		<h2>1:1문의 게시판</h2>
 	</div>
 	<div style="padding-top: 30px">
-		<div class="col-md-3" style="padding-bottom: 10px">
-			<form>
-				병원 선택 <select name="category" id="category">
-					<option value="all">전체게시물</option>
-					<option value="굿닥">굿닥</option>
-					<option value="똑닥">똑닥</option>
-					<option value="뚝닥">뚝닥</option>
-				</select>
-			</form>
-		</div>
 		<table class="table">
 			<thead>
 				<tr>
@@ -55,14 +62,21 @@
 			</tbody>
 		</table>
 	</div>
-	<form action="/erp/board/search.do">
-		<select name="tag" id="tag">
+	<form name="search" action="/erp/board/search.do">
+		<select class="form-control col-sm-2" name="tag" id="tag">
 			<option value="id">작성자</option>
 			<option value="title">제목</option>
 			<option value="content">본문</option>
 			<option value="write_date">작성일</option>
-		</select> <input type="text" name="search" /> <input type="submit" value="검색">
-
+		</select>
+		<div class="input-group">
+			<input type="text" class="form-control col-sm-2" name="search">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="submit">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+			</span>
+		</div>
 	</form>
 
 </body>

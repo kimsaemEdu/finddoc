@@ -15,13 +15,20 @@ public class mypageServiceImpl implements mypageService {
 	@Override
 	public int insertbookmark(mypageDTO mypage) {
 		int result = 0;
-		int check = dao.bookmark_search(mypage);
-		if(check==0) { //자주가는 병원에 등록되어 있는 병원인가 확인
-			result=dao.bookmark_insert(mypage);
+		int admincheck = dao.hosp_check(mypage.getYkiho());
+		if(admincheck!=0){
+			int check = dao.bookmark_search(mypage);
+			if(check==0) { //자주가는 병원에 등록되어 있는 병원인가 확인
+				result=dao.bookmark_insert(mypage);
+			}
+			else {
+				result=0; //등록되어 있는 병원의 경우 등록되었다고 표시
+			}
 		}
 		else {
-			result=0; //등록되어 있는 병원의 경우 등록되었다고 표시
+			result=20000;
 		}
+		
 		return result;
 	}
 

@@ -40,6 +40,11 @@ table {
 </style>
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+	$(document).ready(function() {
+		alert("${message}");
+	})
+</script>
 <body>
 	<div id="title">
 		<h2>예약 목록</h2>

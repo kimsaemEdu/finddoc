@@ -38,11 +38,14 @@ public class mypageController {
 		mypage.setYkiho(ykiho);
 		String message = "";
 		int result=service.insertbookmark(mypage); //병원이 등록되었을 때 실행 하도록 변경
-		if(result==0) {
-			message="이미 등록된 병원입니다.";
+		if(result==20000) {
+			message="등록할 수 없는 병원입니다.\n 확인을 누르면 자주가는 병원 목록으로 이동합니다.";
+		}
+		else if(result==0) {
+			message="이미 등록된 병원입니다.\n 확인을 누르면 자주가는 병원 목록으로 이동합니다.";
 		}
 		else {
-			message="등록이 완료되었습니다.";
+			message="등록이 완료되었습니다.\n 확인을 누르면 자주가는 병원 목록으로 이동합니다.";
 		}
 		return message;
 	}
@@ -51,8 +54,8 @@ public class mypageController {
 	@RequestMapping(value="/mypage/delete_bookmark.do", method = RequestMethod.GET, produces = "application/text; charset=utf-8")
 	public @ResponseBody String delete_bookmark(String ykiho,HttpServletRequest req){
 		mypageDTO mypage = new mypageDTO();
-		mypage.setUserid(getid(req));
 		mypage.setYkiho(ykiho);
+		mypage.setUserid(getid(req));
 		int result=service.deletebookmark(mypage);
 		String message="";
 		if(result>0) {
@@ -67,7 +70,6 @@ public class mypageController {
 	//자주가는 병원검색
 	@RequestMapping("/mypage/search_bookmark.do")
 	public ModelAndView search(String tag, String search, HttpServletRequest req) {
-		System.out.println("컨트롤러 들어옴");
 		String id = getid(req);
 		ModelAndView mav = new ModelAndView();
 		List<MyhospitalDTO> searchlist = service.selectTag(tag,search, id);

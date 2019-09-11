@@ -41,7 +41,14 @@ public class mypageDAOImpl implements mypageDAO {
 		map.put("tag", tag);
 		map.put("search", search);
 		map.put("userid", id);
-		System.out.println("dao : "+sqlSession.selectList("user.bookmark.dynamicSearch", map));
 		return sqlSession.selectList("user.bookmark.dynamicSearch", map);
+	}
+
+	@Override
+	public int hosp_check(String ykiho) {
+		String check = sqlSession.selectOne("user.bookmark.hospcheck",ykiho);
+		System.out.println("============================="+check);
+		int result = Integer.parseInt(check);
+		return result;
 	}
 }

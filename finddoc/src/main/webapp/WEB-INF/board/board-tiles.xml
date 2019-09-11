@@ -21,6 +21,15 @@
 			value="/WEB-INF/board/reviewBoard_write.jsp" />
 	</definition>
 
+	<!-- 후기 게시판 글읽기 -->
+	<definition name="board/reviewBoard_Read"
+		extends="mainTemplate">
+		<put-attribute name="menu"
+			value="/WEB-INF/menu/user_board_menu.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/board/reviewBoard_read.jsp" />
+	</definition>
+
 	<!-- Q&A 게시판 -->
 	<definition name="board/qaBoardList" extends="mainTemplate">
 		<put-attribute name="menu"

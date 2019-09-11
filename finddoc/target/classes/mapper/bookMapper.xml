@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="user.book">
+  	<insert id="insert" parameterType="book">
+  		insert into book values(#{userid},booknum_seq.nextval,#{ykiho},#{hname},#{major},#{bookdate},#{hour},#{mint},#{name},#{birthday},#{cp},#{text},'예약신청')
+  	</insert>
+  	<select id="check_book" parameterType="book">
+  		select count(*) from book where ykiho=#{ykiho} and major=#{major} and bookdate=#{bookdate} and hour=#{hour} and mint=#{mint}
+  	</select>
+  </mapper>

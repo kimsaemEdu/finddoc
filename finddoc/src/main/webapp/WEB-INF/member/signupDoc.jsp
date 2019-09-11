@@ -141,7 +141,7 @@
 				<label class="control-label col-sm-2" for="tags">병원 위치(도시)</label>
 				<div class="col-sm-3">
 					<input type="text" id="haddr" name="haddr" placeholder="도시"
-						class="form-control" minlength="3" required>
+						class="form-control" minlength="2" required>
 				</div>
 			</div>
 			

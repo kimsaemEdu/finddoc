@@ -10,9 +10,10 @@ public class Qa_BoardDTO {
 	private String txupdate;
 	private String moddate;
 	private String APPROVALNUM;
+	private int rn;
 
 	public Qa_BoardDTO(int qaboardnum, int qacount, String userid, String title, String text, String del,
-			String txupdate, String moddate, String aPPROVALNUM) {
+			String txupdate, String moddate, String aPPROVALNUM, int rn) {
 		super();
 		this.qaboardnum = qaboardnum;
 		this.qacount = qacount;
@@ -23,25 +24,26 @@ public class Qa_BoardDTO {
 		this.txupdate = txupdate;
 		this.moddate = moddate;
 		APPROVALNUM = aPPROVALNUM;
+		this.rn = rn;
 	}
 
 	public Qa_BoardDTO() {
 		super();
 	}
 
-	public int getqaboardnum() {
+	public int getQaboardnum() {
 		return qaboardnum;
 	}
 
-	public void setqaboardnum(int qaboardnum) {
+	public void setQaboardnum(int qaboardnum) {
 		this.qaboardnum = qaboardnum;
 	}
 
-	public int getqacount() {
+	public int getQacount() {
 		return qacount;
 	}
 
-	public void setqacount(int qacount) {
+	public void setQacount(int qacount) {
 		this.qacount = qacount;
 	}
 
@@ -101,11 +103,19 @@ public class Qa_BoardDTO {
 		APPROVALNUM = aPPROVALNUM;
 	}
 
+	public int getRn() {
+		return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
+
 	@Override
 	public String toString() {
-		return "Qa_BoardDTO [qaboardnum=" + qaboardnum + ", qacount=" + qacount + ", userid=" + userid
-				+ ", title=" + title + ", text=" + text + ", del=" + del + ", txupdate=" + txupdate + ", moddate="
-				+ moddate + ", APPROVALNUM=" + APPROVALNUM + "]";
+		return "Qa_BoardDTO [qaboardnum=" + qaboardnum + ", qacount=" + qacount + ", userid=" + userid + ", title="
+				+ title + ", text=" + text + ", del=" + del + ", txupdate=" + txupdate + ", moddate=" + moddate
+				+ ", APPROVALNUM=" + APPROVALNUM + ", rn=" + rn + "]";
 	}
 
 }

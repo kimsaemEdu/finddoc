@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans
-	xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
 	<annotation-driven />
 
@@ -70,6 +73,26 @@
 		<beans:property name="maxUploadSize" value="500000" />
 		<beans:property name="defaultEncoding" value="UTF-8" />
 	</beans:bean>
+	
+	<!-- ========== aop를 이용한 선언적 트랜잭션 처리================ -->
+	<!-- 1. 트랜잭션 처리를 위해 제공하는 클래스를 등록 -->
+	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="ds"/>
+	</beans:bean>
+	
+	<!-- 2. DataSourceTransactionManager를 advice로 등록 -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insertHadmin" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 3. aop처리 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* doc.find.member.MemberServiceImpl.insertHadmin*(..))" id="txpointcut"/>
+		<!-- 실행시점이 명확할 때 aspect, 아닐 경우 advisor -->
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="txpointcut"/>
+	</aop:config>
 
 	<!-- ===============인터셉터=================== -->
 	<interceptors>

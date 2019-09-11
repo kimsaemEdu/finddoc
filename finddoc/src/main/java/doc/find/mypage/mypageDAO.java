@@ -12,4 +12,6 @@ public interface mypageDAO {
 	List<MyhospitalDTO> selectAll(String id);
 	
 	List<MyhospitalDTO> selectTag(String tag, String search, String id);
+	
+	int hosp_check(String ykiho);
 }

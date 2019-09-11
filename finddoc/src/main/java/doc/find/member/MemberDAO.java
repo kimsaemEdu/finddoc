@@ -18,5 +18,7 @@ public interface MemberDAO {
 
 	// 회원탈퇴(사용자,병원관계자)
 	int delete(String id, String tag);
+	
+	int insertAdmin_app(String id);
 
 }
